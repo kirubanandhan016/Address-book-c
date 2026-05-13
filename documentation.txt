@@ -1,0 +1,290 @@
+Address Book Application Documentation
+
+Objective:
+To develop a command-line address book application in C that provides efficient contact management with data persistence, input validation, and user-friendly interface.
+
+System Requirements:
+- C compiler (GCC recommended)
+- Standard C libraries
+- Text editor for viewing contacts.txt
+
+Features:
+- Create new contacts with validation
+- Search contacts by name, phone, or email
+- Edit existing contact information
+- Delete contacts from address book
+- List all contacts with sorting options
+- Automatic data persistence to file
+- Input validation with error handling
+- Duplicate contact prevention
+
+Data Structures:
+Contact Structure:
+- char name[50] - Contact name
+- char phone[20] - Phone number
+- char email[50] - Email address
+
+AddressBook Structure:
+- Contact contacts[MAX_CONTACTS] - Array of contacts
+- int contactCount - Current number of contacts
+- MAX_CONTACTS = 100 - Maximum capacity
+
+File Handling:
+File Operations:
+- saveContactsToFile() - Write contacts to CSV file
+- loadContactsFromFile() - Read contacts from CSV file
+- File format: contacts.txt (CSV format)
+- Auto-save on program exit
+- Auto-load on program startup
+
+File Format:
+- Each line: name,phone,email
+- Example: John Doe,9876543210,john.doe@example.com
+- Location: Same directory as executable
+
+Algorithms:
+Search Algorithm:
+- Linear search through contact array
+- O(n) time complexity
+- Case-sensitive string comparison
+
+Sorting Algorithm:
+- Bubble sort implementation
+- O(n^2) time complexity
+- Sort by name, phone, or email
+- In-place sorting with temporary variable
+
+Validation Algorithm:
+- Name: Alphabetic characters and spaces only
+- Phone: 10 digits starting with 6-9
+- Email: Contains '@', ends with '.com'
+- Three attempt limit per input
+
+Menu System Algorithm:
+- Do-while loop for continuous operation
+- Switch-case for menu selection
+- Exit condition on option 6
+
+Advantages:
+    Simple and efficient contact management
+    No external database required
+    Fast operation for small datasets
+    Portable across different systems
+    Low memory footprint
+    Easy to maintain and modify
+    Secure input validation
+    Data persistence ensures no data loss
+
+Limitations:
+    Maximum 100 contacts limit
+    No backup/restore functionality
+    No import/export capabilities
+    No partial search support
+    No contact categorization
+    Case-sensitive search operations
+    Plain text storage (no encryption)
+    Single user support only
+
+Error Handling:
+    Input validation with retry mechanism
+    File operation error checking
+    Buffer overflow protection
+    Duplicate detection
+    Graceful failure recovery
+    User-friendly error messages
+
+Compilation and Execution:
+    Compile: gcc main.c contact.c file.c validation.c -o addressbook
+    Run: ./addressbook
+
+Function Prototypes:
+    main() - Program entry point and menu system
+    initialize() - Initialize address book
+    createContact() - Add new contact with validation
+    searchContact() - Find contacts by criteria
+    editContact() - Modify existing contact
+    deleteContact() - Remove contact from list
+    listContacts() - Display sorted contacts
+    validate_name() - Validate name format
+    validate_phone() - Validate phone format
+    validate_email() - Validate email format
+
+Sample Input and Output:
+
+1. Creating a Contact:
+   Input:
+   Enter your choice: 1
+   Enter the name: John Doe
+   Enter the phone: 9876543210
+   Enter the email: john.doe@example.com
+   
+   Output:
+   Contact successfully saved
+
+2. Searching a Contact:
+   Input:
+   Enter your choice: 2
+   
+   Search Contact by:
+   1.Name
+   2.Phone
+   3.Email
+   Enter choice: 1
+   Enter search key: John Doe
+   
+   Output:
+   Contact Found:
+   Name  : John Doe
+   Phone : 9876543210
+   Email : john.doe@example.com
+
+3. Editing a Contact:
+   Input:
+   Enter your choice: 3
+   
+   Edit by contact
+   1.Name
+   2.Phone
+   3.Email
+   Enter the choice: 1
+   Enter the key: John Doe
+   
+   Contact Found:
+   1.Edit Name
+   2.Edit Phone
+   3.Edit Email
+   Enter new name: John Smith
+   
+   Output:
+   Contact updated successfully
+
+4. Deleting a Contact:
+   Input:
+   Enter your choice: 4
+   
+   Delete contact:
+   1.Name
+   2.Phone
+   3.Email
+   Enter choice: 2
+   Enter the search key: 9876543210
+   
+   Output:
+   Contact deleted
+
+5. Listing Contacts:
+   Input:
+   Enter your choice: 5
+   1.Name
+   2.Phone
+   3.Email
+   Enter choice: 1
+   
+   Output:
+   ============ CONTACT LIST ===========
+   
+   Contact 1
+   -----------------------------
+   Name  : John Smith
+   Phone : 9876543210
+   Email : john.doe@example.com
+   
+   ===================================
+
+6. Invalid Input Handling:
+   Input:
+   Enter your choice: 7
+   
+   Output:
+   Invalid choice. Please try again.
+
+7. Name Validation Error:
+   Input:
+   Enter the name: John123
+   
+   Output:
+   Invalid name. Try again
+
+8. Phone Validation Error:
+   Input:
+   Enter the phone: 1234567890
+   
+   Output:
+   Invalid phone number
+
+9. Email Validation Error:
+   Input:
+   Enter the email: john@doe
+   
+   Output:
+   Invalid email retry
+
+10. Duplicate Name Error:
+    Input:
+    Enter the name: John Doe
+    
+    Output:
+    Name already avaliable save another name
+
+11. Duplicate Phone Error:
+    Input:
+    Enter the phone: 9876543210
+    
+    Output:
+    Phone number already exists
+
+12. Duplicate Email Error:
+    Input:
+    Enter the email: john.doe@example.com
+    
+    Output:
+    Email already exists
+
+13. Attempts Finished Error:
+    Output:
+    Attempts finished
+
+14. Contact Not Found Error:
+    Input:
+    Enter the search key: UnknownContact
+    
+    Output:
+    Contact not found
+
+15. No Matching Contact Found:
+    Output:
+    No matching contact found
+
+16. Maximum Contacts Error:
+    Output:
+    Address book reached max contact
+
+17. File Error:
+    Output:
+    Error file
+
+18. Empty Address Book:
+    Output:
+    No contacts available in contacts
+
+19. Save and Exit:
+    Input:
+    Enter your choice: 6
+    
+    Output:
+    Saving and Exiting...
+
+20. Main Menu Display:
+    Output:
+    ------------Address Book Menu-------------
+    1. Create contact
+    2. Search contact
+    3. Edit contact
+    4. Delete contact
+    5. List all contacts
+    6. Save and Exit
+
+
+
+Conclusion:
+The Address Book Application successfully provides a complete contact management solution with essential CRUD operations, data persistence, and input validation. While it has limitations in terms of scalability and features, it serves as an excellent foundation for understanding file-based data management, input validation, and menu-driven programming in C. The application demonstrates key programming concepts including data structures, file I/O, algorithms, and error handling in a practical, real-world context.
